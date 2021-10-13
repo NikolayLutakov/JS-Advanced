@@ -7,7 +7,7 @@ function getArguments(){
     const sortable = [];
     let result = '';
     for(const element of arguments){
-        console.log(typeof(element))
+       
         if(!typeof(element)){
             elements.push([typeof(element), element.toString()])
         } else {
