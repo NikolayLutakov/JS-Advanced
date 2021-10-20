@@ -22,36 +22,34 @@
     }
 
     String.prototype.truncate = function (n) {
-        const end = '...';
-        let string = this
-
-
-        if (string.length < n) {
-            return string.toString();
-        }
-
-        if (string.substr(-3) == end) {
-            string = string.substring(0, string.length - 3)
-        }
-
-        if (string.lastIndexOf(' ') == -1) {
-            if (n < 4) {
-                return '.'.repeat(n);
+        if (n < 4) {
+            let result = []
+            for (let i = 0; i < n; i++) {
+                result.push('.');
             }
-
-            return string.substring(0, n - 3) + end;
+            return result.join('');
         }
-
-        let substring = string.substring(0, string.lastIndexOf(' '));
-        let diff = n - substring.length;
-
-        if (diff > 3) {
-            diff = 3;
+        if (n >= this.length) {
+            return `${this}`;
         }
-
-        return substring + '.'.repeat(diff);
-
+        if (this.split(' ')[0].length === this.length) {
+            return this.slice(0, n - 3) + '...';
+        }
+        let result = [];
+        let counter = 3;
+        let splitStr = this.split(' ');
+        while (true) {
+            let el = splitStr.shift()
+            let elLength = el.length;
+            if (counter + elLength > n) {
+                break;
+            }
+            result.push(el);
+            counter += elLength + 1;
+        }
+        return result.join(' ') + '...';
     }
+
     String.format = function (string, ...params) {
         let pattern = /{[0-9]+}/g;
         let matches = string.match(pattern);
@@ -65,18 +63,3 @@
     }
 })()
 
-let str = 'my string';
-str = str.ensureStart('my');
-console.log(str)
-str = str.ensureStart('hello ');
-console.log(str)
-str = str.truncate(16);
-console.log(str)
-str = str.truncate(14);
-console.log(str)
-str = str.truncate(8);
-console.log(str)
-str = str.truncate(4);
-console.log(str)
-str = str.truncate(2);
-console.log(str)
