@@ -8,10 +8,6 @@ import { showRegister } from './register.js';
 // - create async functions for requests
 // - implement DOM logic
 
-updateNav();
-// Start application in home view (catalog);
-showHome();
-
 const views = {
     'homeLink': showHome,
     'loginLink': showLogin,
@@ -55,6 +51,10 @@ async function onLogout(event){
     updateNav();
     showLogin();
 }
+
+updateNav();
+// Start application in home view (catalog);
+showHome();
 
 // Order of views:
 // x catalog (home view)
