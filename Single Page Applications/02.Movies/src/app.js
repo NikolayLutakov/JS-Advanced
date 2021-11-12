@@ -8,6 +8,10 @@ import { showRegister } from './register.js';
 // - create async functions for requests
 // - implement DOM logic
 
+updateNav();
+// Start application in home view (catalog);
+showHome();
+
 const views = {
     'homeLink': showHome,
     'loginLink': showLogin,
@@ -23,11 +27,6 @@ nav.addEventListener('click', (event) => {
         view();
     }
 });
-
-
-updateNav();
-// Start application in home view (catalog);
-showHome();
 
 export function updateNav(){
     const userData = JSON.parse(sessionStorage.getItem('userData'));
