@@ -28,3 +28,5 @@ describe('Testing...', () => {
         expect(dealership.euroCategory('10')).equal('We have added 5% discount to the final price: 14250.');
     });
 });
+
+//testing git
